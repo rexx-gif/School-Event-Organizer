@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Baskara Hindia - School Event</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">SchoolFest</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#tickets">Tickets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="center-image">
+            <h1 class="right-text">SMEA</h1>
+            <h1 class="left-text">Hindia</h1>
+            <img src="assets/baskara-removebg-preview.png" alt="Baskara Hindia" />
+            
+            <div class="dove">
+                <img src="https://i.imgur.com/3Xp8k7S.png" class="dove1" alt="">
+                <img src="https://i.imgur.com/asMkAf5.png" class="dove2" alt="">
+            </div>
+            
+            <div class="artist-label" data-aos="fade-up" data-aos-duration="1500">
+                <h3 class="artist-name">Musisi Muda yg menciptakan lagu lagu bermakna dan menyentuh</h3>
+            </div>
+            <div class="artist-info" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                <p>Daniel Baskara Putra</p>
+            </div>
+            
+            <div class="countdown" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                <h3>Event Starts In:</h3>
+                <div class="timer">
+                    <div><span id="days">23</span><small>Days</small></div>
+                    <div><span id="hours">08</span><small>Hours</small></div>
+                    <div><span id="minutes">2025</span><small>Minutes</small></div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#about" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About The Event</h2>
+            <div class="content">
+                <div class="text" data-aos="fade-right" data-aos-duration="1000">
+                    <p>Join us for an unforgettable night with Baskara Hindia, one of Indonesia's most talented musicians, at our annual school festival. This exclusive performance will feature hits from his acclaimed albums along with special surprises.</p>
+                    <p>The event will take place at our school's amphitheater, transformed into an intimate concert venue with state-of-the-art sound and lighting systems.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-music"></i>
+                            <span>Live Performance</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-utensils"></i>
+                            <span>Food Stalls</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-camera"></i>
+                            <span>Photo Booth</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-tshirt"></i>
+                            <span>Merchandise</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="image" data-aos="fade-left" data-aos-duration="1000">
+                    <img src="https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/p3/144/2024/12/16/Hindia-SAMPUL-4015685641.jpg" alt="Concert Atmosphere">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="schedule-section">
+        <div class="container">
+            <h2>Event Schedule</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="time">15:00</div>
+                    <div class="event">
+                        <h3>Gates Open</h3>
+                        <p>Doors open for attendees. Food stalls and merchandise available.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="time">16:30</div>
+                    <div class="event">
+                        <h3>Opening Acts</h3>
+                        <p>Performances by school bands and local artists.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="time">18:00</div>
+                    <div class="event">
+                        <h3>Baskara Hindia</h3>
+                        <p>Main performance by Baskara Hindia featuring special guests.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
+                    <div class="time">20:30</div>
+                    <div class="event">
+                        <h3>Closing & Meet & Greet</h3>
+                        <p>Event concludes with opportunity for photos and autographs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tickets" class="tickets-section">
+    <div class="container">
+        <h2>Get Your Tickets</h2>
+        <div class="ticket-cards">
+            <div class="ticket-card" data-aos="fade-up" data-aos-duration="1000">
+                <h3>Regular</h3>
+                <div class="price">IDR 50,000</div>
+                <ul>
+                    <li>General Admission</li>
+                    <li>Access to food stalls</li>
+                    <li>SchoolFest souvenir</li>
+                </ul>
+                <button class="btn purchase-btn" data-type="Regular" data-price="50000">Buy Now</button>
+            </div>
+            <div class="ticket-card featured" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="popular-tag">Most Popular</div>
+                <h3>VIP</h3>
+                <div class="price">IDR 150,000</div>
+                <ul>
+                    <li>Priority Seating</li>
+                    <li>Meet & Greet Opportunity</li>
+                    <li>Exclusive Merchandise</li>
+                    <li>Early Entry</li>
+                </ul>
+                <button class="btn purchase-btn" data-type="VIP" data-price="150000">Buy Now</button>
+            </div>
+            <div class="ticket-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <h3>Group</h3>
+                <div class="price">IDR 40,000<span>/person</span></div>
+                <ul>
+                    <li>Minimum 5 people</li>
+                    <li>All Regular benefits</li>
+                    <li>Group photo opportunity</li>
+                </ul>
+                <button class="btn purchase-btn" data-type="Group" data-price="40000">Buy Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="purchaseForm" class="modal">
+        <div class="modal-content">
+            <span id="closePurchaseForm" class="close-btn">&times;</span>
+            <h3>Complete Your Purchase</h3>
+            <form id="ticketForm">
+                <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" required></div>
+                <div class="form-group"><label for="email">Email</label><input type="email" id="email" required></div>
+                <div class="form-group"><label for="quantity">Quantity</label><input type="number" id="quantity" min="1" value="1" required></div>
+                <input type="hidden" id="ticketType"><input type="hidden" id="ticketPrice">
+                <button type="submit" class="btn">Continue to Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="paymentMethodModal" class="modal">
+        <div class="modal-content">
+            <span id="closePaymentMethodModal" class="close-btn">&times;</span>
+            <h3>Select Payment Method</h3>
+            <div class="payment-methods">
+                <div class="payment-method" data-method="dana">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png" alt="DANA"><span>DANA</span>
+                </div>
+                <div class="payment-method" data-method="ovo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/2560px-Logo_ovo_purple.svg.png" alt="OVO"><span>OVO</span>
+                </div>
+                <div class="payment-method" data-method="gopay">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" alt="GoPay"><span>GoPay</span>
+                </div>
+                <div class="payment-method" data-method="qris">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/2560px-Logo_QRIS.svg.png" alt="QRIS"><span>QRIS</span>
+                </div>
+            </div>
+            <div class="amount-display">Amount: <strong>IDR <span id="paymentTotal">0</span></strong></div>
+        </div>
+    </div>
+
+    <div id="paymentProcessingModal" class="modal">
+        <div class="modal-content">
+            <span id="closePaymentProcessingModal" class="close-btn">&times;</span>
+            <h3 id="paymentMethodTitle">Payment Processing</h3>
+            <div id="paymentContent"></div>
+            <div id="phoneInputContainer" style="display: none;">
+                <div class="form-group">
+                    <label for="paymentPhoneNumber">Phone Number</label>
+                    <input type="tel" id="paymentPhoneNumber" placeholder="081234567890" pattern="[0-9]{10,13}" required>
+                </div>
+                <button id="confirmPhoneBtn" class="btn">Confirm Payment</button>
+            </div>
+            <div class="payment-status" style="display: none;">
+                <div class="loader"></div>
+                <div class="checkmark-container" style="display: none;">
+                  <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                  </svg>  
+                </div>
+                <p id="paymentStatusText">Processing your payment...</p>
+            </div>
+            <button id="completePaymentBtn" class="btn" style="display:none;"></button>
+        </div>
+    </div>
+</section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right" data-aos-duration="1000">
+                    <h3>Get In Touch</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> SMK Negeri 1 Bondowoso, HOS. Cokroaminoto No. 110 Bondowoso</p>
+                    <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
+                    <p><i class="fas fa-envelope"></i> schoolfest@smakensa.sch.id</p>
+                    <div class="social-media">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form" data-aos="fade-left" data-aos-duration="1000">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>SchoolFest</h3>
+                    <p>Annual School Music Festival</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#schedule">Schedule</a></li>
+                        <li><a href="#tickets">Tickets</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <form>
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SchoolFest. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <button id="backToTopBtn" title="Kembali ke atas">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js" ></script>
+    <script>
+
+      // Di dalam file script.js
+
+function initializeUI() {
+    // ... (kode AOS.init, Navbar scroll, dll. yang sudah ada) ...
+
+    // ▼▼▼ TAMBAHKAN KODE INI DI DALAM FUNGSI initializeUI ▼▼▼
+
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    const heroSection = document.getElementById('home'); // 'home' adalah ID hero section Anda
+
+    if (backToTopBtn && heroSection) {
+        // Logika untuk menampilkan/menyembunyikan tombol
+        window.addEventListener('scroll', () => {
+            // Tampilkan tombol jika sudah scroll melewati tinggi hero section
+            if (window.scrollY > heroSection.offsetHeight) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Logika untuk scroll ke atas saat tombol diklik
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Animasi scroll yang halus
+            });
+        });
+    }
+    // ▲▲▲ AKHIR DARI KODE TAMBAHAN ▲▲▲
+}
+        // Hamburger Menu
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth Scroll for Nav Links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                document.querySelector('nav ul').classList.remove('active');
+            });
+        });
+
+        // AOS Initialization
+        AOS.init({
+            once: true
+        });
+
+
+        // Music Permission Handling
+        const audio = document.getElementById('bg-music');
+        const permissionContainer = document.getElementById('permission-container');
+
+        if (audio && permissionContainer) {
+            permissionContainer.style.display = 'flex';
+
+            function playAudio() {
+                audio.volume = 1;
+                audio.play()
+                    .then(() => {
+                        console.log("Audio is playing");
+                    })
+                    .catch((error) => {
+                        console.warn("Autoplay error:", error);
+                    });
+                permissionContainer.style.display = 'none';
+            }
+
+            function muteAudio() {
+                audio.volume = 0;
+                permissionContainer.style.display = 'none';
+            }
+
+            setTimeout(() => {
+                if (permissionContainer.style.display !== 'none') {
+                    muteAudio();
+                }
+            }, 5000);
+
+            window.playAudio = playAudio;
+            window.muteAudio = muteAudio;
+        } else {
+            console.log('Audio elements not found - skipping audio functionality');
+        }
+    </script>
+</body>
+</html>
