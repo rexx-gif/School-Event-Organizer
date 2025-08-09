@@ -36,11 +36,8 @@
                 <img src="https://i.imgur.com/asMkAf5.png" class="dove2" alt="">
             </div>
             
-            <div class="artist-label" data-aos="fade-up" data-aos-duration="1500">
-                <h3 class="artist-name">Musisi Muda yg menciptakan lagu lagu bermakna dan menyentuh</h3>
-            </div>
             <div class="artist-info" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-                <p>Daniel Baskara Putra</p>
+                <p>Baskara Putra</p>
             </div>
             
             <div class="countdown" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
@@ -52,7 +49,6 @@
                 </div>
             </div>
         </div>
-
         <a href="#about" class="scroll-down">
             <i class="fas fa-chevron-down"></i>
         </a>
@@ -143,7 +139,7 @@
             </div>
             <div class="ticket-card featured" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                 <div class="popular-tag">Most Popular</div>
-                <h3>VIP</h3>
+                <h3 >VIP</h3>
                 <div class="price">IDR 150,000</div>
                 <ul>
                     <li>Priority Seating</li>
@@ -293,114 +289,37 @@
             </div>
         </div>
     </footer>
+
+    <button id="chatbotBtn" title="Tanya AI">
+    <i class="fas fa-robot"></i>
+</button>
+
+<div id="chatbotModal" class="modal">
+    <div class="modal-content chatbot-content">
+        <span id="closeChatbot" class="close-btn">&times;</span>
+        <h3>SchoolFest AI Assistant</h3>
+        <div id="chatbox">
+            <div class="chat-message bot">Halo! Ada yang bisa saya bantu seputar SchoolFest?</div>
+             <div id="botThinking" class="chat-message bot" style="display: none;">
+        <span>.</span><span>.</span><span>.</span>
+    </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Ketik pertanyaan Anda...">
+            <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
     <button id="backToTopBtn" title="Kembali ke atas">
     <i class="fas fa-arrow-up"></i>
-</button>
+</button> 
 
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/script.js" ></script>
-    <script>
-
-      // Di dalam file script.js
-
-function initializeUI() {
-    // ... (kode AOS.init, Navbar scroll, dll. yang sudah ada) ...
-
-    // ▼▼▼ TAMBAHKAN KODE INI DI DALAM FUNGSI initializeUI ▼▼▼
-
-    const backToTopBtn = document.getElementById('backToTopBtn');
-    const heroSection = document.getElementById('home'); // 'home' adalah ID hero section Anda
-
-    if (backToTopBtn && heroSection) {
-        // Logika untuk menampilkan/menyembunyikan tombol
-        window.addEventListener('scroll', () => {
-            // Tampilkan tombol jika sudah scroll melewati tinggi hero section
-            if (window.scrollY > heroSection.offsetHeight) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        });
-
-        // Logika untuk scroll ke atas saat tombol diklik
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' // Animasi scroll yang halus
-            });
-        });
-    }
-    // ▲▲▲ AKHIR DARI KODE TAMBAHAN ▲▲▲
-}
-        // Hamburger Menu
-        document.querySelector('.hamburger').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth Scroll for Nav Links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                document.querySelector('nav ul').classList.remove('active');
-            });
-        });
-
-        // AOS Initialization
-        AOS.init({
-            once: true
-        });
-
-
-        // Music Permission Handling
-        const audio = document.getElementById('bg-music');
-        const permissionContainer = document.getElementById('permission-container');
-
-        if (audio && permissionContainer) {
-            permissionContainer.style.display = 'flex';
-
-            function playAudio() {
-                audio.volume = 1;
-                audio.play()
-                    .then(() => {
-                        console.log("Audio is playing");
-                    })
-                    .catch((error) => {
-                        console.warn("Autoplay error:", error);
-                    });
-                permissionContainer.style.display = 'none';
-            }
-
-            function muteAudio() {
-                audio.volume = 0;
-                permissionContainer.style.display = 'none';
-            }
-
-            setTimeout(() => {
-                if (permissionContainer.style.display !== 'none') {
-                    muteAudio();
-                }
-            }, 5000);
-
-            window.playAudio = playAudio;
-            window.muteAudio = muteAudio;
-        } else {
-            console.log('Audio elements not found - skipping audio functionality');
-        }
-    </script>
 </body>
 </html>
