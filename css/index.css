@@ -1,9 +1,10 @@
 /* ========== CUSTOM FONTS & RESET ========== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');
 
 @font-face {
   font-family: 'Hindia';
-  src: url('../fonts/white.ttf') format('truetype');
+  src: url('../fonts/hindia.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -32,6 +33,11 @@ html {
     --text-primary: #ffffff;
     --text-secondary: #e0e0e0;
     --text-muted: #a0a0a0;
+    /* Enchanted Colors (Updated to grayscale palette) */
+    --magic-purple: #4a4a4a; /* Darker gray */
+    --magic-blue: #6a6a6a;   /* Medium gray */
+    --magic-glow: rgba(255, 255, 255, 0.2); /* Subtle white glow */
+    --shimmer-gold: #f0f0f0; /* Off-white for shimmer */
 }
 
 /* ========== BASE STYLING ========== */
@@ -39,12 +45,29 @@ body {
     background: linear-gradient(135deg, var(--pure-black) 0%, var(--dark-gray) 100%);
     color: var(--text-primary);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
     min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    position: relative; /* Diperlukan untuk background pseudo-element */
+}
+
+/* Enchanted Background Effect */
+body::before {
+    content: '';
+    position: fixed; /* Tetap di viewport untuk efek konstan */
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.03), transparent 50%),
+                radial-gradient(circle at 40% 70%, rgba(200, 200, 200, 0.03), transparent 50%); /* Gradien putih/abu-abu terang yang halus */
+    background-size: 80% 80%;
+    animation: etherealBackground 20s infinite alternate ease-in-out;
+    z-index: -1; /* Jaga agar tetap di belakang konten */
 }
 
 .container {
-    width: min(90%, 1200px);
+    width: min(90%, 1200px); /* Lebar responsif, maksimal 1200px */
     margin: 0 auto;
     padding: 0 1.5rem;
 }
@@ -52,38 +75,40 @@ body {
 /* ========== CUSTOM GLASSMORPHISM MIXINS ========== */
 .glass-card {
     background: var(--glass-white);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px) saturate(180%); /* Peningkatan saturasi untuk lebih banyak vibrasi */
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--glass-border);
-    box-shadow: 0 8px 32px var(--glass-shadow);
+    box-shadow: 0 8px 32px var(--glass-shadow), inset 0 0 5px rgba(255, 255, 255, 0.05); /* Menambahkan inner shadow */
 }
 
 .glass-card-hover {
-    transition: all 250ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1); /* Transisi sedikit lebih lama */
 }
 
 .glass-card-hover:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15); /* Sedikit lebih buram saat dihover */
+    transform: translateY(-5px) scale(1.01); /* Peningkatan efek angkat dan skala sedikit */
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4), 0 0 20px var(--magic-glow); /* Shadow yang diperkuat dengan glow */
 }
 
 /* ========== TYPOGRAPHY SYSTEM ========== */
 h1 {
     font-weight: 700;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 4rem); /* Ukuran font responsif */
     line-height: 1.1;
     letter-spacing: -0.02em;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Glow teks yang halus */
 }
 
 h2 {
   font-weight: 600;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-size: clamp(1.75rem, 3vw, 2.5rem); /* Ukuran font responsif */
     line-height: 1.2;
     margin-bottom: 3rem;
     text-align: center;
     position: relative;
     color: var(--text-primary);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.15); /* Glow teks yang halus */
 }
 
 h2::after {
@@ -93,8 +118,9 @@ h2::after {
     left: 50%;
     transform: translateX(-50%);
     width: 4rem;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--pure-white), transparent);
+    height: 3px; /* Garis bawah sedikit lebih tebal */
+    background: linear-gradient(90deg, transparent, var(--magic-purple), var(--magic-blue), transparent); /* Gradien grayscale */
+    animation: flowUnderline 3s linear infinite alternate; /* Garis bawah animasi */
 }
 
 h3 {
@@ -124,33 +150,36 @@ p {
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: all 200ms ease;
+    transition: all 250ms ease, box-shadow 400ms ease; /* Transisi yang disesuaikan untuk glow yang lebih halus */
     overflow: hidden;
     background: var(--glass-white);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow halus awal */
 }
 
 .btn::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
+    left: -150%; /* Mulai lebih jauh ke kiri */
+    width: 200%; /* Shimmer lebih lebar */
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 600ms ease;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 800ms ease; /* Shimmer lebih lambat */
+    transform: skewX(-20deg); /* Skew untuk tampilan yang lebih dinamis */
 }
 
 .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px); /* Efek angkat yang lebih menonjol */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px var(--magic-glow); /* Shadow yang lebih dalam dengan glow */
+    background: rgba(255, 255, 255, 0.18); /* Lebih buram saat dihover */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); /* Glow teks saat dihover */
 }
 
 .btn:hover::before {
-    left: 100%;
+    left: 150%; /* Berakhir lebih jauh ke kanan */
 }
 
 /* ========== HEADER (UNCHANGED) ========== */
@@ -176,7 +205,7 @@ p {
 .logo {
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--text-primary); /* Disesuaikan untuk menggunakan text-primary */
     margin-left: 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -193,7 +222,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: var(--text-light);
+    color: var(--text-secondary); /* Disesuaikan untuk menggunakan text-secondary */
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -207,7 +236,7 @@ nav ul li a::after {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(to right, var(--primary), var(--secondary));
+    background: linear-gradient(to right, var(--magic-purple), var(--magic-blue)); /* Gradien grayscale */
     transition: width 0.3s ease;
 }
 
@@ -221,13 +250,13 @@ nav ul li a.active::after {
     margin-right: 30px;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--primary);
+    color: var(--text-primary); /* Disesuaikan untuk menggunakan text-primary */
 }
 
-/* ========== HERO SECTION (UNCHANGED) ========== */
+/* ========== HERO SECTION ========== */
 .hero-section {
-    background: 
-        linear-gradient(rgba(13, 13, 13, 0.7), rgba(13, 13, 13, 0.8)),
+    background:
+        linear-gradient(rgba(13, 13, 13, 0.75), rgba(13, 13, 13, 0.85)), /* Overlay sedikit lebih gelap */
         url('https://i.imgur.com/Dbvmu2g.jpeg');
     background-size: cover;
     background-position: center;
@@ -238,6 +267,8 @@ nav ul li a.active::after {
     justify-content: center;
     text-align: center;
     overflow: hidden;
+    /* Tambahkan gradien radial halus untuk kedalaman */
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
 }
 
 .center-image {
@@ -248,55 +279,49 @@ nav ul li a.active::after {
 .center-image img {
     position: relative;
     z-index: 2;
-    filter: grayscale(100%) drop-shadow(0 0 20px rgba(0,0,0,0.5));
-    width: 370px;
-    animation: float 6s ease-in-out infinite;
+    filter: grayscale(80%) drop-shadow(0 0 25px rgba(0,0,0,0.7)) drop-shadow(0 0 15px var(--magic-glow)); /* Shadow dan glow yang diperkuat */
+    width: min(90vw, 370px); /* Lebar responsif, membatasi pada 370px */
+    height: auto; /* Mempertahankan rasio aspek */
+    animation: float 6s ease-in-out infinite, pulseGlow 4s infinite alternate; /* Menambahkan pulse glow */
 }
 
-h1.left-text,
-h1.right-text {
-    font-family: "Hindia";
+h1.back-text {
+    font-family: "Pinyon Script", cursive;
     position: absolute;
+    top: 10%;
+    right: clamp(-50%, -20vw, -10%); /* Posisi kanan responsif dengan clamp */
     z-index: 1;
-    font-size: 6em;
+    font-size: clamp(5em, 10vw, 15em); /* Ukuran font responsif dengan clamp */
     font-weight: 700;
     transform: rotate(-10deg);
     white-space: nowrap;
-    background: linear-gradient(120deg, #555555, #f5f5f5, #555555);
-    background-size: 200% auto;
+    background: linear-gradient(120deg, #555555, var(--shimmer-gold), #dddddd, var(--shimmer-gold), #555555); /* Shimmer yang lebih cerah */
+    background-size: 300% auto; /* Gradien lebih lebar untuk gerakan lebih */
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    filter: drop-shadow(0 0 20px black);
-    animation: gradientMove 3s linear infinite, fadeInLeft 1.5s ease;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.5), 0 0 10px var(--magic-glow); /* Shadow dan glow yang diperkuat */
+    filter: drop-shadow(0 0 25px black); /* Shadow keseluruhan yang lebih kuat */
+    animation: gradientMove 5s linear infinite, scaleInFromCorner 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; /* Animasi baru */
 }
 
-h1.left-text {
-    top: 30%;
-    left: 80%;
-}
-
-h1.right-text {
-    top: 40%;
-    right: 75%;
-}
 
 .artist-label {
-    position: absolute;
-    bottom: 90px;
-    left: 150%;
-    transform: translateX(-50%) rotate(3deg) skew(-10deg);
-    background-color: rgba(51, 51, 51, 0.8);
-    padding: 10px 20px;
-    border-radius: 10px;
-    z-index: 3;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
-    animation: bounce 2s infinite;
+  position: absolute;
+  bottom: 90px;
+  left: 175%;
+  transform: translateX(-50%) rotate(3deg) skew(-10deg);
+  background-color: rgba(51, 51, 51, 0.8);
+  padding: 10px 20px;
+  border-radius: 10px;
+  z-index: 3;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  animation: bounce 2s infinite, pulseGlowSmall 3s infinite alternate; /* Menambahkan pulse glow */
+  width: 350px;
 }
 
 .artist-label h3.artist-name {
-    color: var(--text-light);
+    color: var(--text-secondary); /* Disesuaikan untuk menggunakan text-secondary */
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
@@ -314,7 +339,7 @@ h1.right-text {
     border-radius: 8px;
     z-index: 3;
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
-    animation: bounce2 2s infinite;
+    animation: bounce2 2s infinite, pulseGlowSmall 3s infinite alternate; /* Menambahkan pulse glow */
 }
 
 .artist-info p {
@@ -326,19 +351,19 @@ h1.right-text {
     margin: 0;
     text-align: center;
     white-space: nowrap;
-    background: linear-gradient(90deg, #f5f5f5, #dddddd, #f5f5f5);
+    background: linear-gradient(90deg, #f5f5f5, var(--shimmer-gold), #dddddd, var(--shimmer-gold), #f5f5f5); /* Shimmer yang lebih cerah */
     background-size: 200% auto;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: glossyText 3s linear infinite;
+    animation: glossyText 4s linear infinite; /* Animasi lebih lambat untuk efek yang lebih halus */
 }
 
 .dove img {
     position: absolute;
     z-index: 100;
     width: 150px;
-    animation: fly 15s linear infinite;
-    filter: grayscale(100%);
+    animation: flyOrganic 20s linear infinite; /* Jalur terbang yang lebih organik */
+    filter: grayscale(80%) drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); /* Glow halus */
 }
 
 .dove1 {
@@ -362,16 +387,17 @@ h1.right-text {
     transform: translateX(-50%);
     text-align: center;
     z-index: 3;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6); /* Background sedikit lebih gelap */
     padding: 15px 30px;
     border-radius: 10px;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px); /* Blur yang lebih kuat */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 10px var(--magic-glow); /* Disesuaikan ke magic-glow (putih) */
 }
 
 .countdown h3 {
     font-size: 1rem;
     margin-bottom: 10px;
-    color: var(--secondary);
+    color: var(--text-secondary); /* Disesuaikan untuk menggunakan text-secondary */
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -391,12 +417,13 @@ h1.right-text {
     display: block;
     font-size: 2rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--text-primary); /* Disesuaikan untuk menggunakan text-primary */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Glow untuk angka */
 }
 
 .timer small {
     font-size: 0.8rem;
-    color: var(--gray);
+    color: var(--text-muted); /* Disesuaikan untuk menggunakan text-muted */
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -406,11 +433,12 @@ h1.right-text {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--primary);
-    font-size: 2rem;
-    animation: bounce-arrow 2s infinite;
+    color: var(--text-primary); /* Disesuaikan untuk menggunakan text-primary */
+    font-size: 2.2rem; /* Sedikit lebih besar */
+    animation: bounce-arrow-enhanced 2s infinite ease-in-out; /* Bounce yang diperkuat */
     cursor: pointer;
     z-index: 10;
+    text-shadow: 0 0 10px var(--magic-glow); /* Disesuaikan ke magic-glow (putih) */
 }
 
 /* ============ Button buat balik ke atas */
@@ -460,6 +488,7 @@ h1.right-text {
     padding: 6rem 0;
     background: radial-gradient(ellipse at center, var(--dark-gray) 0%, var(--pure-black) 70%);
     position: relative;
+    overflow: hidden; /* Memastikan partikel tidak meluap */
 }
 
 .about-section::before {
@@ -469,8 +498,11 @@ h1.right-text {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.02)"/><circle cx="80" cy="30" r="1" fill="rgba(255,255,255,0.02)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.02)"/></svg>') repeat;
-    opacity: 0.3;
+    /* Efek bintang/partikel animasi */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.04)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.03)"/><circle cx="40" cy="70" r="0.8" fill="rgba(255,255,255,0.05)"/><circle cx="60" cy="50" r="1.2" fill="rgba(255,255,255,0.03)"/><circle cx="10" cy="90" r="1.1" fill="rgba(255,255,255,0.04)"/></svg>') repeat;
+    background-size: 150px 150px; /* Sesuaikan ukuran untuk kepadatan lebih atau kurang */
+    opacity: 0.4;
+    animation: animateStars 60s linear infinite; /* Gerakan lambat, terus-menerus */
 }
 
 .about-section .content {
@@ -480,6 +512,7 @@ h1.right-text {
     align-items: center;
     margin-top: 3rem;
     position: relative;
+    z-index: 1; /* Konten tetap di atas partikel */
 }
 
 .about-section .text {
@@ -496,6 +529,9 @@ h1.right-text {
     border-radius: 1rem;
     overflow: hidden;
     position: relative;
+    border: 2px solid var(--magic-blue); /* Disesuaikan ke magic-blue */
+    box-shadow: 0 0 30px rgba(106, 106, 106, 0.4); /* Efek glow untuk gambar (disesuaikan) */
+    transition: all 400ms ease; /* Transisi lebih lambat */
 }
 
 .about-section .image::before {
@@ -506,14 +542,14 @@ h1.right-text {
     right: 0;
     bottom: 0;
     background: var(--glass-white);
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px) brightness(1.1); /* Blur dan brightness sedikit lebih kuat */
     z-index: 1;
     opacity: 0;
-    transition: opacity 250ms ease;
+    transition: opacity 300ms ease;
 }
 
 .about-section .image:hover::before {
-    opacity: 1;
+    opacity: 0.2; /* Lebih sedikit buram untuk hover gambar yang lebih jelas */
 }
 
 .about-section .image img {
@@ -521,12 +557,12 @@ h1.right-text {
     height: auto;
     display: block;
     filter: grayscale(70%);
-    transition: all 300ms ease;
+    transition: all 400ms ease; /* Transisi lebih lambat */
 }
 
 .about-section .image:hover img {
-    filter: grayscale(30%);
-    transform: scale(1.02);
+    filter: grayscale(10%) brightness(1.1); /* Lebih sedikit grayscale, lebih cerah saat dihover */
+    transform: scale(1.05) rotateZ(1deg); /* Rotasi sedikit dan skala lebih besar */
 }
 
 .features {
@@ -548,19 +584,21 @@ h1.right-text {
     background: var(--glass-white);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
-    transition: all 200ms ease;
+    transition: all 250ms ease, box-shadow 300ms ease; /* Menambahkan transisi box-shadow */
 }
 
 .feature:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15); /* Sedikit lebih buram */
+    transform: translateY(-3px) perspective(1000px) rotateX(1deg); /* Kemiringan 3D sedikit */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 10px var(--magic-glow); /* Disesuaikan ke magic-glow */
 }
 
 .feature i {
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Ikon sedikit lebih besar */
     color: var(--text-primary);
     width: 2rem;
     text-align: center;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Glow ikon */
 }
 
 .feature span {
@@ -588,14 +626,14 @@ h1.right-text {
     left: 50%;
     top: 0;
     bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, var(--light-gray), transparent);
+    width: 2px; /* Garis lebih tebal */
+    background: linear-gradient(to bottom, transparent, var(--magic-purple), var(--magic-blue), transparent); /* Gradien grayscale */
     transform: translateX(-50%);
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem; /* Ruang lebih */
     display: flex;
     justify-content: flex-end;
     padding-right: 2rem;
@@ -619,9 +657,10 @@ h1.right-text {
     padding: 0.5rem 1rem;
     border-radius: 1.5rem;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem; /* Ukuran font sedikit lebih besar */
     z-index: 1;
     white-space: nowrap;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Disesuaikan ke glow putih */
 }
 
 .event {
@@ -635,19 +674,20 @@ h1.right-text {
     background: var(--glass-white);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
-    transition: all 250ms ease;
+    transition: all 300ms ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow awal */
 }
 
 .event:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px) perspective(1000px) rotateY(-1deg); /* Angkat lebih dalam dan kemiringan 3D */
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4), 0 0 20px var(--magic-glow); /* Disesuaikan ke glow putih */
 }
 
 .event h3 {
     color: var(--text-primary);
     margin-bottom: 0.75rem;
-    font-size: 1.25rem;
+    font-size: 1.35rem; /* Judul event sedikit lebih besar */
 }
 
 .event p {
@@ -684,50 +724,55 @@ h1.right-text {
     background: var(--glass-white);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
-    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Shadow awal */
 }
 
 .ticket-card:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.2); /* Lebih buram saat dihover */
+    transform: translateY(-10px) scale(1.03) perspective(1000px) rotateX(2deg); /* Angkat lebih dalam, skala lebih besar, kemiringan 3D */
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5), 0 0 25px var(--magic-glow); /* Disesuaikan ke magic-glow */
 }
 
 .ticket-card.featured {
-    background: rgba(255, 255, 255, 0.12);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    transform: translateY(-1rem);
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid var(--shimmer-gold); /* Warna border unggulan */
+    transform: translateY(-1.2rem) scale(1.02); /* Angkat lebih menonjol */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px var(--shimmer-gold); /* Disesuaikan ke shimmer-gold */
 }
 
 .popular-tag {
     position: absolute;
     top: -1px;
     right: -1px;
-    background: linear-gradient(135deg, var(--pure-white), var(--light-gray));
+    background: linear-gradient(135deg, var(--shimmer-gold), #f0f0f0); /* Tag grayscale */
     color: var(--pure-black);
     padding: 0.5rem 1rem;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.8rem; /* Sedikit lebih besar */
+    font-weight: 700; /* Lebih tebal */
     border-radius: 0 1.25rem 0 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px; /* Spasi lebih */
+    box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.3); /* Shadow halus */
 }
 
 .ticket-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Judul sedikit lebih besar */
     margin-bottom: 1rem;
     color: var(--text-primary);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); /* Glow halus */
 }
 
 .price {
-    font-size: 2.5rem;
+    font-size: 2.8rem; /* Harga lebih besar */
     font-weight: 700;
     margin-bottom: 1.5rem;
     color: var(--text-primary);
+    text-shadow: 0 0 10px var(--magic-glow); /* Glow harga */
 }
 
 .price span {
-    font-size: 1rem;
+    font-size: 1.1rem; /* Teks sedikit lebih besar */
     color: var(--text-muted);
     font-weight: 400;
 }
@@ -750,8 +795,10 @@ h1.right-text {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--text-primary);
-    font-weight: 600;
+    color: var(--magic-purple); /* Disesuaikan ke magic-purple */
+    font-weight: 700; /* Centang lebih tebal */
+    font-size: 1.1rem; /* Centang lebih besar */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Glow untuk centang */
 }
 
 /* CSS untuk Animasi Centang Sukses */
@@ -762,11 +809,11 @@ h1.right-text {
 }
 
 .checkmark {
-    width: 80px; /* <- Jika ini 0, tidak akan terlihat */
-    height: 80px; /* <- Jika ini 0, tidak akan terlihat */
+    width: 80px;
+    height: 80px;
     display: block;
-    stroke-width: 3; /* <- Jika ini 0, tidak akan terlihat */
-    stroke: #4CAF50; /* <- Jika ini transparan, tidak akan terlihat */
+    stroke-width: 3;
+    stroke: #4CAF50;
 }
 
 .checkmark-circle {
@@ -811,8 +858,8 @@ h1.right-text {
 .loader {
     /* Style loader Anda yang sudah ada */
     /* contoh: */
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #3498db;
+    border: 8px solid rgba(255, 255, 255, 0.1); /* Border lebih terang untuk loader */
+    border-top: 8px solid var(--magic-purple); /* Disesuaikan ke magic-purple */
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -853,10 +900,11 @@ h1.right-text {
 }
 
 .contact-info i {
-    color: var(--text-primary);
+    color: var(--magic-purple); /* Disesuaikan ke magic-purple */
     width: 1.25rem;
     margin-top: 0.125rem;
     flex-shrink: 0;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); /* Disesuaikan ke glow putih */
 }
 
 .social-media {
@@ -873,8 +921,9 @@ h1.right-text {
     height: 3rem;
     border-radius: 50%;
     color: var(--text-primary);
-    transition: all 200ms ease;
+    transition: all 250ms ease;
     text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Shadow halus awal */
 }
 
 .social-media a {
@@ -884,8 +933,9 @@ h1.right-text {
 }
 
 .social-media a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.25); /* Lebih buram saat dihover */
+    transform: translateY(-3px) scale(1.05); /* Angkat lebih besar dan skala sedikit */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px var(--magic-glow); /* Disesuaikan ke magic-glow */
 }
 
 .contact-form {
@@ -929,8 +979,8 @@ h1.right-text {
 .form-group textarea:focus {
     outline: none;
     background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+    border-color: var(--magic-purple); /* Disesuaikan ke magic-purple */
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1), 0 0 10px rgba(255, 255, 255, 0.5); /* Disesuaikan ke glow putih */
 }
 
 /* ========== FOOTER ========== */
@@ -978,8 +1028,9 @@ footer {
 }
 
 .footer-links ul li a:hover {
-    color: var(--text-primary);
-    padding-left: 0.25rem;
+    color: var(--magic-purple); /* Disesuaikan ke magic-purple */
+    padding-left: 0.5rem; /* Slide yang lebih jelas */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); /* Disesuaikan ke glow putih */
 }
 
 .footer-newsletter h4 {
@@ -1009,17 +1060,19 @@ footer {
 
 .footer-newsletter button {
     padding: 0.75rem 1rem;
-    background: var(--pure-white);
+    background: linear-gradient(135deg, var(--magic-purple), var(--magic-blue)); /* Gradien grayscale */
     border: none;
     border-radius: 0.5rem;
-    color: var(--pure-black);
+    color: var(--pure-white);
     cursor: pointer;
-    transition: all 200ms ease;
+    transition: all 250ms ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .footer-newsletter button:hover {
-    background: var(--light-gray);
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, var(--magic-blue), var(--magic-purple)); /* Gradien grayscale terbalik saat dihover */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 10px var(--magic-glow); /* Disesuaikan ke magic-glow */
 }
 
 .footer-bottom {
@@ -1038,41 +1091,42 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.85); /* Overlay sedikit lebih gelap */
+    backdrop-filter: blur(10px); /* Blur yang lebih kuat */
     z-index: 1000;
     justify-content: center;
     align-items: center;
 }
 
 .modal-content {
-    width: min(90%, 500px);
+    width: min(90%, 500px); /* Lebar responsif, maksimal 500px */
     padding: 2.5rem;
     border-radius: 1.25rem;
     position: relative;
     color: var(--text-primary);
-    animation: modalSlideIn 300ms ease-out;
+    animation: modalSlideIn 300ms ease-out, pulseGlowModal 5s infinite alternate; /* Menambahkan pulse glow */
 }
 
 .modal-content {
     background: var(--glass-white);
     backdrop-filter: blur(30px);
     border: 1px solid var(--glass-border);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px var(--magic-glow); /* Disesuaikan ke magic-glow */
 }
 
 .close-btn {
     position: absolute;
     top: 1rem;
     right: 1.25rem;
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Tombol close lebih besar */
     cursor: pointer;
     color: var(--text-muted);
-    transition: color 200ms ease;
+    transition: color 200ms ease, transform 200ms ease;
 }
 
 .close-btn:hover {
     color: var(--text-primary);
+    transform: rotate(90deg); /* Berputar saat dihover */
 }
 
 .modal-content h3 {
@@ -1104,21 +1158,22 @@ footer {
     padding: 1.5rem;
     border-radius: 0.75rem;
     cursor: pointer;
-    transition: all 200ms ease;
+    transition: all 250ms ease;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .payment-method:hover,
 .payment-method.selected {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.12); /* Lebih buram */
+    border-color: var(--magic-blue); /* Disesuaikan ke magic-blue */
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 10px var(--magic-glow); /* Disesuaikan ke magic-glow */
 }
 
 .payment-method img {
-    width: 3rem;
-    height: 3rem;
+    width: 3.5rem; /* Ikon sedikit lebih besar */
+    height: 3.5rem;
     object-fit: contain;
     margin-bottom: 0.75rem;
     filter: grayscale(100%) brightness(0.8);
@@ -1127,7 +1182,7 @@ footer {
 
 .payment-method.selected img,
 .payment-method:hover img {
-    filter: grayscale(0%) brightness(1);
+    filter: grayscale(0%) brightness(1.2) drop-shadow(0 0 8px var(--shimmer-gold)); /* Cerah dan glow keemasan */
 }
 
 .payment-method span {
@@ -1138,14 +1193,15 @@ footer {
 
 .amount-display {
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1.4rem; /* Ukuran font lebih besar */
     margin-top: 1.5rem;
     color: var(--text-secondary);
 }
 
 .amount-display strong {
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 700; /* Lebih tebal */
+    text-shadow: 0 0 10px var(--shimmer-gold); /* Glow keemasan */
 }
 
 .payment-status {
@@ -1157,7 +1213,7 @@ footer {
     width: 3rem;
     height: 3rem;
     border: 3px solid rgba(255, 255, 255, 0.1);
-    border-top: 3px solid var(--text-primary);
+    border-top: 3px solid var(--shimmer-gold); /* Disesuaikan ke shimmer-gold */
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 0 auto 1.5rem;
@@ -1184,7 +1240,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 20px var(--magic-glow); /* Disesuaikan ke magic-glow */
 }
 
 .qris-code img {
@@ -1240,24 +1296,28 @@ button.audio-btn {
 }
 
 .allow {
-    background: var(--pure-white);
-    color: var(--pure-black);
+    background: linear-gradient(135deg, var(--magic-purple), var(--magic-blue)); /* Tombol allow grayscale */
+    color: var(--pure-white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .allow:hover {
-    background: var(--light-gray);
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, var(--magic-blue), var(--magic-purple));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 10px var(--magic-glow); /* Disesuaikan ke magic-glow */
 }
 
 .mute {
     background: rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .mute:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 audio {
@@ -1265,14 +1325,44 @@ audio {
 }
 
 /* ========== CUSTOM ANIMATIONS ========== */
-@keyframes modalSlideIn {
-    from {
+
+/* Ethereal Background Animation */
+@keyframes etherealBackground {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Animated Underline */
+@keyframes flowUnderline {
+    0% { background-position: 0% center; }
+    100% { background-position: 100% center; }
+}
+
+/* Pulse Glow Animation */
+@keyframes pulseGlow {
+    0%, 100% { filter: grayscale(80%) drop-shadow(0 0 25px rgba(0,0,0,0.7)) drop-shadow(0 0 15px var(--magic-glow)); }
+    50% { filter: grayscale(80%) drop-shadow(0 0 35px rgba(0,0,0,0.9)) drop-shadow(0 0 25px var(--magic-glow)); }
+}
+
+@keyframes pulseGlowSmall {
+    0%, 100% { box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1), 0 0 5px var(--magic-glow); }
+    50% { box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2), 0 0 15px var(--magic-glow); }
+}
+
+@keyframes pulseGlowModal {
+    0%, 100% { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px var(--magic-glow); } /* Disesuaikan ke magic-glow */
+    50% { box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), 0 0 45px var(--magic-glow); } /* Disesuaikan ke magic-glow */
+}
+
+/* New: Scale In From Corner for back-text */
+@keyframes scaleInFromCorner {
+    0% {
         opacity: 0;
-        transform: scale(0.95) translateY(20px);
+        transform: translate(-100%, -100%) scale(0.5) rotate(-30deg);
     }
-    to {
+    100% {
         opacity: 1;
-        transform: scale(1) translateY(0);
+        transform: translate(0, 0) scale(1) rotate(-10deg);
     }
 }
 
@@ -1291,7 +1381,7 @@ audio {
     100% { background-position: 200% center; }
 }
 
-@keyframes fadeInLeft {
+@keyframes fadeInLeft { /* Disimpan untuk penggunaan umum jika diperlukan, tetapi back-text menggunakan scaleInFromCorner */
     from {
         opacity: 0;
         transform: translateX(-50px) rotate(-10deg);
@@ -1302,7 +1392,7 @@ audio {
     }
 }
 
-@keyframes fadeInRight {
+@keyframes fadeInRight { /* Disimpan untuk penggunaan umum */
     from {
         opacity: 0;
         transform: translateX(50px) rotate(-10deg);
@@ -1328,24 +1418,45 @@ audio {
     100% { background-position: 0% center; }
 }
 
-@keyframes fly {
+/* Jalur terbang yang lebih organik untuk burung merpati */
+@keyframes flyOrganic {
     0% {
-        transform: translateX(0) translateY(0) rotate(0deg);
+        transform: translateX(0vw) translateY(0vh) rotate(0deg) scale(0.8);
         opacity: 0;
     }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
+    10% { opacity: 1; transform: translateX(10vw) translateY(-5vh) rotate(5deg) scale(0.9); }
+    30% { transform: translateX(30vw) translateY(-10vh) rotate(-5deg) scale(1); }
+    50% { transform: translateX(50vw) translateY(0vh) rotate(0deg) scale(1.1); }
+    70% { transform: translateX(70vw) translateY(-10vh) rotate(5deg) scale(1); }
+    90% { transform: translateX(90vw) translateY(-5vh) rotate(-5deg) scale(0.9); }
     100% {
-        transform: translateX(50px) translateY(-50px) rotate(5deg);
+        transform: translateX(100vw) translateY(0vh) rotate(0deg) scale(0.8);
         opacity: 0;
     }
 }
 
-@keyframes bounce-arrow {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-    40% { transform: translateY(-15px) translateX(-50%); }
-    60% { transform: translateY(-7px) translateX(-50%); }
+/* Bounce yang diperkuat untuk panah scroll */
+@keyframes bounce-arrow-enhanced {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%) scale(1);
+        text-shadow: 0 0 10px var(--magic-glow); /* Disesuaikan ke magic-glow */
+    }
+    40% {
+        transform: translateY(-20px) translateX(-50%) scale(1.1);
+        text-shadow: 0 0 15px var(--magic-glow), 0 0 20px rgba(255, 255, 255, 0.7); /* Disesuaikan ke magic-glow */
+    }
+    60% {
+        transform: translateY(-10px) translateX(-50%) scale(1.05);
+        text-shadow: 0 0 12px var(--magic-glow), 0 0 15px rgba(255, 255, 255, 0.5); /* Disesuaikan ke magic-glow */
+    }
 }
+
+/* Animasi bintang/partikel */
+@keyframes animateStars {
+    from { background-position: 0 0; }
+    to { background-position: 150px 150px; } /* Harus cocok dengan background-size */
+}
+
 
 /* ========== RESPONSIVE DESIGN ========== */
 @media screen and (max-width: 991px) {
@@ -1373,8 +1484,12 @@ audio {
         text-align: center;
     }
     
-    h1.left-text, h1.right-text {
-        font-size: 3.5em;
+    /* h1.back-text sekarang menggunakan clamp, jadi media query ini mungkin tidak terlalu diperlukan
+       kecuali untuk penyesuaian posisi spesifik jika diperlukan */
+    h1.back-text { 
+        top: 5%;
+        /* font-size dikelola oleh clamp */
+        right: clamp(-30%, -15vw, -10%); /* Penyesuaian posisi yang lebih responsif */
     }
     
     .about-section .content {
@@ -1455,10 +1570,13 @@ audio {
         right: 55%;
         font-size: 2.5em;
     }
-    
-    .center-image img {
-        width: 250px;
+
+    h1.back-text { /* Font size is now handled by clamp in the base style */
+        top: 15%;
+        right: clamp(-10%, -5vw, -10%); /* Penyesuaian posisi untuk layar yang sangat kecil */
     }
+    
+    /* center-image img sekarang responsif secara native dengan width: min(90vw, 370px) */
     
     .countdown {
         right: 50%;
