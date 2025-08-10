@@ -105,26 +105,36 @@ h1 {
 }
 
 h2 {
-  font-weight: 600;
+    position: relative;
+    padding-left: 30px;
+    padding-bottom: 1rem;
+    font-weight: 600;
     font-size: clamp(1.75rem, 3vw, 2.5rem); 
     line-height: 1.2;
     margin-bottom: 3rem;
     text-align: center;
-    position: relative;
     color: var(--text-primary);
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.15); 
 }
 
+
 h2::after {
     content: '';
     position: absolute;
-    bottom: -0.75rem;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 4rem;
-    height: 3px; 
-    background: linear-gradient(90deg, transparent, var(--magic-purple), var(--magic-blue), transparent); 
-    animation: flowUnderline 3s linear infinite alternate; 
+    width: 15rem;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--magic-purple), 
+        var(--magic-blue), 
+        var(--magic-purple), 
+        transparent);
+    background-size: 200% 100%;
+    animation: flowUnderline 3s ease-in-out infinite;
+    border-radius: 3px;
 }
 
 h3 {
@@ -550,20 +560,19 @@ h1.back-text {
   bottom: 20px; 
   right: 20px;
   width: 25%;
-  margin-left: 70%;
+  margin-left: 68%;
   margin-top: 10%;
   height: 65%; 
   z-index: 1001;
   overflow-x: hidden;
-  overflow-y:hidden;
-  
+  overflow-y: hidden;
 
   background-color: #1c1c1e4d;
   backdrop-filter: var(--pure-black);
   border-radius: 20px;
   border: 1px solid #3a3a3c;
   box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-  
+
   
   opacity: 0;
   visibility: hidden;
@@ -983,11 +992,44 @@ h1.back-text {
 }
 
 .ticket-card h3 {
-    background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
-    font-size: 1.6rem; 
+    background: linear-gradient(to right, #9f9f9f 0%, #fff 10%, #868686 20%, #9f9f9f 30%);
+    background-size: 200% auto;
+    font-size: 1.6rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); 
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    animation: shimmer 2s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+h3.vip{
+background: linear-gradient(
+        to right,
+        #fffac2 0%,  
+        #ffeb3b 15%,  
+        #ffd600 30%,   
+        #ffeb3b 45%,    
+        #fffac2 60%
+    );    background-size: 200% auto;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    text-shadow: 0 0 5px rgba(239, 255, 118, 0.2);
+    animation: shimmer 2s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: -200% center;
+    }
 }
 
 .price {
@@ -1558,8 +1600,12 @@ audio {
 
 
 @keyframes flowUnderline {
-    0% { background-position: 0% center; }
-    100% { background-position: 100% center; }
+    0% {
+        background-position: 100% center;
+    }
+    100% {
+        background-position: -100% center;
+    }
 }
 
 
