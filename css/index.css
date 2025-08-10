@@ -726,6 +726,7 @@ h1.back-text {
     overflow: hidden; 
 }
 
+
 .about-section::before {
     content: '';
     position: absolute;
