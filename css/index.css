@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
 
 @font-face {
   font-family: 'Hindia';
@@ -726,7 +728,6 @@ h1.back-text {
     overflow: hidden; 
 }
 
-
 .about-section::before {
     content: '';
     position: absolute;
@@ -931,6 +932,403 @@ h1.back-text {
     line-height: 1.6;
 }
 
+ .gallery-section {
+            padding: 100px 0;
+            background: radial-gradient(ellipse at center, var(--dark-gray) 0%, var(--pure-black) 70%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="grain" width="100" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="5" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="30" cy="15" r="0.3" fill="rgba(255,255,255,0.03)"/><circle cx="70" cy="8" r="0.4" fill="rgba(255,255,255,0.04)"/><circle cx="90" cy="18" r="0.2" fill="rgba(255,255,255,0.02)"/></pattern></defs><rect width="100" height="20" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .gallery-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #a8d8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 100px;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+            overflow: visible;
+        }
+
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 350px;
+            height: 450px;
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Center slide (active) */
+        .carousel-slide.active {
+            width: 500px;
+            height: 600px;
+            transform: translateX(0) scale(1) rotateY(0deg);
+            z-index: 10;
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* Left slides */
+        .carousel-slide.prev {
+            transform: translateX(-200px) scale(0.8) rotateY(15deg);
+            z-index: 5;
+            opacity: 0.7;
+        }
+
+        .carousel-slide.prev-2 {
+            transform: translateX(-350px) scale(0.6) rotateY(25deg);
+            z-index: 3;
+            opacity: 0.4;
+        }
+
+        /* Right slides */
+        .carousel-slide.next {
+            transform: translateX(200px) scale(0.8) rotateY(-15deg);
+            z-index: 5;
+            opacity: 0.7;
+        }
+
+        .carousel-slide.next-2 {
+            transform: translateX(350px) scale(0.6) rotateY(-25deg);
+            z-index: 3;
+            opacity: 0.4;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: all 0.8s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .carousel-slide:hover img {
+            transform: scale(1.03);
+        }
+
+        .carousel-slide.active:hover {
+            transform: translateX(0) scale(1.02) rotateY(0deg);
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+            padding: 2rem;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.6s ease;
+            z-index: 3;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-slide.active .slide-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .carousel-slide:hover .slide-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide-overlay h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, #a8d8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-overlay p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.4rem;
+            z-index: 15;
+            transition: all 0.4s ease;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .carousel-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 15;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .indicator.active {
+            background: white;
+            transform: scale(1.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .gallery-section h2 {
+                font-size: 2rem;
+            }
+            
+            .carousel-container {
+                padding: 0 50px;
+                height: 450px;
+            }
+            
+            .carousel-slide {
+                width: 250px;
+                height: 320px;
+            }
+            
+            .carousel-slide.active {
+                width: 320px;
+                height: 400px;
+            }
+            
+            .carousel-slide.prev,
+            .carousel-slide.next {
+                transform: translateX(-120px) scale(0.7) rotateY(20deg);
+            }
+            
+            .carousel-slide.prev {
+                transform: translateX(-120px) scale(0.7) rotateY(20deg);
+            }
+            
+            .carousel-slide.next {
+                transform: translateX(120px) scale(0.7) rotateY(-20deg);
+            }
+            
+            .carousel-slide.prev-2,
+            .carousel-slide.next-2 {
+                display: none;
+            }
+            
+            .slide-overlay {
+                padding: 1.5rem;
+            }
+            
+            .slide-overlay h3 {
+                font-size: 1.2rem;
+            }
+            
+            .slide-overlay p {
+                font-size: 0.9rem;
+            }
+            
+            .carousel-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+            
+            .prev-btn {
+                left: 10px;
+            }
+            
+            .next-btn {
+                right: 10px;
+            }
+            
+            .carousel-indicators {
+                bottom: 20px;
+                padding: 8px 16px;
+                gap: 8px;
+            }
+            
+            .indicator {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-container {
+                padding: 0 30px;
+                height: 350px;
+            }
+            
+            .carousel-slide {
+                width: 200px;
+                height: 280px;
+            }
+            
+            .carousel-slide.active {
+                width: 280px;
+                height: 350px;
+            }
+            
+            .carousel-slide.prev,
+            .carousel-slide.next {
+                transform: translateX(-100px) scale(0.6) rotateY(25deg);
+            }
+            
+            .carousel-slide.prev {
+                transform: translateX(-100px) scale(0.6) rotateY(25deg);
+            }
+            
+            .carousel-slide.next {
+                transform: translateX(100px) scale(0.6) rotateY(-25deg);
+            }
+        }
+
+        /* Animation for smooth transitions */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .carousel-slide.active {
+            animation: fadeInUp 0.6s ease;
+        }
+
 
 .tickets-section {
     padding: 6rem 0;
@@ -1003,6 +1401,134 @@ h1.back-text {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+}
+
+.ticket-concert {
+    display: flex;
+    width: 800px;
+    height: 300px;
+    /* Gradasi latar belakang diagonal yang lebih halus */
+    background: linear-gradient(135deg, #3a3a3a, #1a1a1a); 
+    font-family: 'Roboto', sans-serif;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    border: 1px solid #4f4f4f; /* Garis tepi tipis untuk definisi */
+}
+
+.ticket-main {
+    flex-grow: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ticket-stub {
+    background-color: #1a1a1a; /* Warna lebih gelap untuk kontras */
+    flex-basis: 220px;
+    flex-shrink: 0;
+    /* Garis sobekan yang lebih halus (dotted) */
+    border-left: 2px dotted #666; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- STYLING KONTEN --- */
+
+.header .eyebrow {
+    font-size: 14px;
+    color: #b2b2b2;
+    font-weight: 500;
+    letter-spacing: 3px; /* Jarak antar huruf lebih lebar */
+}
+
+.header .artist {
+    font-family: 'Oswald', sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 8px 0;
+    text-transform: uppercase;
+    
+    /* Efek gradasi pada teks untuk kesan premium */
+    /* background: linear-gradient(180deg, #FFFFFF, #BDBDBD); */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-emphasis-color: transparent;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.info-group .label {
+    display: block;
+    font-size: 11px;
+    color: #b2b2b2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.info-group .value {
+    font-size: 16px;
+    font-weight: 500;
+    color: #f5f5f5; /* Warna putih yang tidak terlalu silau */
+}
+
+.barcode-area svg {
+    width: 100% !important;
+    height: 60px !important;
+    background-color: white;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* --- STYLING BAGIAN SOBEKAN (STUB) --- */
+
+.stub-info {
+    text-align: center;
+    transform: rotate(90deg);
+}
+
+.stub-info .stub-artist {
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0;
+    /* background: linear-gradient(180deg, #FFFFFF, #BDBDBD); */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-emphasis-color: transparent;
+}
+
+.stub-info  {
+    display: block;
+    font-size: 11px;
+    color: #b2b2b2;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.stub-barcode {
+    display: block;
+    margin: 10px auto 0;
+    width: 180px;
+    height: 100px;
+}
+
+
+.stub-info .stub-id {
+    font-size: 14px;
+    font-weight: 700;
+    color: #f5f5f5;
 }
 
 h3.vip{
@@ -1890,8 +2416,6 @@ audio {
         top: 15%;
         right: clamp(-10%, -5vw, -10%); 
     }
-    
-    
     
     .countdown {
         right: 50%;

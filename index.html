@@ -8,6 +8,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
     <link rel="icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/647008cb7ab9fa7c49f257a3/c8b36883-971c-487e-8bc4-fd1f9c6aa304/favicon.ico?format=100w">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header class="navbar">
@@ -87,6 +88,84 @@
         </div>
     </section>
 
+        <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Event Gallery</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Memories from Previous Events</p>
+            
+            <div class="carousel-container" data-aos="fade-up" data-aos-delay="400">
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-slide active">
+                            <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=800&h=600&fit=crop" alt="Concert Performance">
+                            <div class="slide-overlay">
+                                <h3>Live Performance</h3>
+                                <p>Energetic performances that captivate the audience</p>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop" alt="Crowd Enjoying">
+                            <div class="slide-overlay">
+                                <h3>Amazing Crowd</h3>
+                                <p>Students enjoying every moment of the festival</p>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop" alt="Stage Lights">
+                            <div class="slide-overlay">
+                                <h3>Spectacular Lighting</h3>
+                                <p>Professional stage setup with stunning visuals</p>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&h=600&fit=crop" alt="Artist on Stage">
+                            <div class="slide-overlay">
+                                <h3>Musical Excellence</h3>
+                                <p>World-class artists performing live</p>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800&h=600&fit=crop" alt="Backstage">
+                            <div class="slide-overlay">
+                                <h3>Behind the Scenes</h3>
+                                <p>Exclusive backstage moments and preparations</p>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-slide">
+                            <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&h=600&fit=crop" alt="Festival Atmosphere">
+                            <div class="slide-overlay">
+                                <h3>Festival Vibes</h3>
+                                <p>The perfect atmosphere for music lovers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn prev-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                    <span class="indicator" data-slide="3"></span>
+                    <span class="indicator" data-slide="4"></span>
+                    <span class="indicator" data-slide="5"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <section id="schedule" class="schedule-section">
         <div class="container">
             <h2>Event Schedule</h2>
@@ -139,7 +218,7 @@
             </div>
             <div class="ticket-card featured" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                 <div class="popular-tag">Most Popular</div>
-                <h3 >VIP</h3>
+                <h3 class="vip">VIP</h3>
                 <div class="price">IDR 150,000</div>
                 <ul>
                     <li>Priority Seating</li>
@@ -171,7 +250,8 @@
                 <div class="form-group"><label for="email">Email</label><input type="email" id="email" required></div>
                 <div class="form-group"><label for="quantity">Quantity</label><input type="number" id="quantity" min="1" value="1" required></div>
                 <input type="hidden" id="ticketType"><input type="hidden" id="ticketPrice">
-                <button type="submit" class="btn">Continue to Payment</button>
+                <button class="btn">Continue to Payment</button>
+                
             </form>
         </div>
     </div>
@@ -208,7 +288,7 @@
                     <label for="paymentPhoneNumber">Phone Number</label>
                     <input type="tel" id="paymentPhoneNumber" placeholder="081234567890" pattern="[0-9]{10,13}" required>
                 </div>
-                <button id="confirmPhoneBtn" class="btn">Confirm Payment</button>
+                <button type="submit" id="confirmPhoneBtn" class="btn">Confirm Payment</button>
             </div>
             <div class="payment-status" style="display: none;">
                 <div class="loader"></div>
@@ -269,11 +349,11 @@
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#schedule">Schedule</a></li>
-                        <li><a href="#tickets">Tickets</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#home">> Home</a></li>
+                        <li><a href="#about">> About</a></li>
+                        <li><a href="#schedule">> Schedule</a></li>
+                        <li><a href="#tickets">> Tickets</a></li>
+                        <li><a href="#contact">> Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-newsletter">
@@ -320,6 +400,129 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="js/script.js" ></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+     <script src="js/script.js" ></script>
+   
+    <script>
+     // Initialize EmailJS with your Public Key when the page loads
+   
+         document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('carouselTrack');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            function updateCarousel() {
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active', 'prev', 'next', 'prev-2', 'next-2');
+                    
+                    if (index === currentSlide) {
+                        slide.classList.add('active');
+                    } else if (index === (currentSlide - 1 + totalSlides) % totalSlides) {
+                        slide.classList.add('prev');
+                    } else if (index === (currentSlide + 1) % totalSlides) {
+                        slide.classList.add('next');
+                    } else if (index === (currentSlide - 2 + totalSlides) % totalSlides) {
+                        slide.classList.add('prev-2');
+                    } else if (index === (currentSlide + 2) % totalSlides) {
+                        slide.classList.add('next-2');
+                    }
+                });
+                
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            // Indicator clicks
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateCarousel();
+                });
+            });
+
+            // Slide clicks for navigation
+            slides.forEach((slide, index) => {
+                slide.addEventListener('click', () => {
+                    if (index !== currentSlide) {
+                        currentSlide = index;
+                        updateCarousel();
+                    }
+                });
+            });
+
+            // Initialize carousel
+            updateCarousel();
+
+            // Auto-play carousel
+            let autoPlayInterval = setInterval(nextSlide, 6000);
+
+            // Pause auto-play on hover
+            track.addEventListener('mouseenter', () => {
+                clearInterval(autoPlayInterval);
+            });
+
+            track.addEventListener('mouseleave', () => {
+                autoPlayInterval = setInterval(nextSlide, 6000);
+            });
+
+            // Touch/swipe support for mobile
+            let startX = 0;
+            let endX = 0;
+
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                clearInterval(autoPlayInterval);
+            });
+
+            track.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
+                }
+                
+                autoPlayInterval = setInterval(nextSlide, 6000);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = setInterval(nextSlide, 6000);
+                } else if (e.key === 'ArrowRight') {
+                    nextSlide();
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = setInterval(nextSlide, 6000);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -5,7 +5,7 @@ let selectedPaymentMethod = '';
 let currentTicketData = {
     id: '',
     event: 'SchoolFest 2025',
-    venue: 'Indoor Sasana Krida Wiyata SMKN 1 Bondowoso',
+    venue: 'Indoor SMKN 1 Bondowoso',
     date: 'Agustus 15, 2025',
     time: '10:00 AM - 6:00 PM',
     name: '',
@@ -19,23 +19,21 @@ let currentTicketData = {
     phoneNumber: ''
 };
 
-// --- MAIN INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
     initializeUI();
     initializeTicketSystem();
 });
 
-// --- UI INITIALIZATION ---
+
+
 function initializeUI() {
     AOS.init({ once: true });
 
-    // Navbar scroll effect
     window.addEventListener('scroll', () => {
         const navbar = document.querySelector('.navbar');
         if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
     
-    // Hamburger Menu
     const hamburger = document.querySelector('.hamburger');
     const navUl = document.querySelector('nav ul');
     if (hamburger && navUl) {
@@ -44,7 +42,6 @@ function initializeUI() {
         });
     }
 
-    // Back to Top Button
     const backToTopBtn = document.getElementById('backToTopBtn');
     const heroSection = document.getElementById('home');
     if (backToTopBtn && heroSection) {
@@ -59,6 +56,64 @@ function initializeUI() {
     // Chatbot AI Initialization
     initializeChatbot();
 }
+
+ (function(){
+        emailjs.init("ImEIAz3SHbAg1nLZj"); // ⚠️ Replace with your actual Public Key
+    })();
+
+    document.getElementById("confirmPhoneBtn").addEventListener("click", function(e) {
+        e.preventDefault(); // Prevent page reload
+
+        const now = new Date()
+
+    const fullName = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value;
+        const quantity = document.getElementById("quantity").value;
+        const ticketType = document.getElementById("ticketType").value;
+        const ticketPrice = document.getElementById("ticketPrice").value;
+        const tanggalPembelian = now.toLocaleString("id-ID",{
+             day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        })
+        const jamPembelian = now.toLocaleString("id-ID",{
+            hour : "2-digit",
+            minute : "2-digit",
+            second : "2-digit"
+        })
+
+
+        // Create the parameters object for EmailJS
+        const templateParams = {
+            from_name: fullName,
+            from_mail: email,
+            ticket_type: ticketType,
+            quantity: quantity,
+            total_price: ticketPrice * quantity,
+            purchase_time : jamPembelian,
+            purchase_date : tanggalPembelian,
+            to_email: "schoolfestconcert@gmail.com" // gc
+        };
+
+            if (!fullName || !email || !ticketType || !quantity || !ticketPrice) {
+        alert("Mohon lengkapi semua data sebelum melanjutkan.");
+        return;
+    }
+
+        // Now you can safely call emailjs.send
+        // Note: The third argument should be the template parameters object.
+        emailjs.send("service_33yg3na", "template_1lc68gk", templateParams)
+            .then(
+                res => {
+                    alert("✅ Pesanan terkirim ke email!");
+                    console.log("SUCCESS!", res.status, res.text);
+                },
+                err => {
+                    alert("❌ Gagal mengirim pesanan: " + JSON.stringify(err));
+                    console.log("FAILED...", err);
+                }
+            );
+    });
 
 // --- TICKET SYSTEM INITIALIZATION ---
 function initializeTicketSystem() {
@@ -79,7 +134,7 @@ function initializeTicketSystem() {
     document.getElementById('closePaymentProcessingModal').addEventListener('click', closePaymentProcessingModal);
 }
 
-// --- CHATBOT AI WITH GEMINI API ---
+// --- CHATBOT AI WITH OPEN ROUTER API ---
 function initializeChatbot() {
     const chatbotBtn = document.getElementById('chatbotBtn');
     const chatbotModal = document.getElementById('chatbotModal');
@@ -89,11 +144,9 @@ function initializeChatbot() {
 
    // --- LOGIKA BARU ---
 if (chatbotBtn && chatbotModal && closeChatbot) {
-    // Tombol AI akan menampilkan/menyembunyikan jendela chat
     chatbotBtn.addEventListener('click', () => {
         chatbotModal.classList.toggle('show');
     });
-    // Tombol close (x) akan selalu menyembunyikan
     closeChatbot.addEventListener('click', () => {
         chatbotModal.classList.remove('show');
     });
@@ -114,6 +167,7 @@ if (chatbotBtn && chatbotModal && closeChatbot) {
         });
     }
 }
+
 async function getOpenRouterResponse(userMessage) {
     const chatbox = document.getElementById('chatbox');
     const thinkingIndicator = document.getElementById('botThinking');
@@ -125,12 +179,9 @@ async function getOpenRouterResponse(userMessage) {
         Berbicara seperti anggota Gen Z. Sampaikan apa adanya; tanpa mempermanis respons. Inovatif dan berpikir di luar kebiasaan.
         Kamu adalah AI Asisten untuk siswa yg hadir dalam konser ini,harap bersikap sopan dan asik pada semua user.
         jangan meggunakan bahasa baku
-        pakai bahasa indonesia
-        jawab pesan pakai double chat misalnya aku jadi akuu iya jadi iyaa
-        kalo ketawa awokawokaowkaowk anyinggg  jangan haha
+        pakai bahasa indonesia9
         jangan pernah pakai huruf kapial dan kalo jawab make huruf kecil semua dan jangan pakai tanda baca
         kalo ngerespon make aku kamu jangan make lo gue
-        kalo ada yg nanya ukuran sempak jawab aja ah ah ahhh ahh
         Berikut adalah informasi lengkap tentang acara SchoolFest:
         - Nama Acara: SchoolFest 2025
         - Bintang Tamu Utama: Baskara Hindia
@@ -146,13 +197,13 @@ async function getOpenRouterResponse(userMessage) {
         
         ATURAN WAJIB:
         1. Jika pertanyaan pengguna berhubungan dengan SchoolFest (harga, jadwal, lokasi, bintang tamu, dll), jawab dengan ramah berdasarkan informasi di atas.
-        2. Jika pertanyaan pengguna TIDAK ADA HUBUNGANNYA SAMA SEKALI dengan SchoolFest (misal: "Apa ibukota Prancis?", "buatkan saya puisi", "siapa presiden Indonesia?"), Anda HARUS menolak dengan sopan. Contoh penolakan: "goblok anjing aku ai buat bantuin kamu beli tiket konser doang, bukan buat jawab pertanyaan goblok kayak gitu, kalo mau tanya soal konser tanya aja ya bajingan"
+        2. Jika pertanyaan pengguna TIDAK ADA HUBUNGANNYA SAMA SEKALI dengan SchoolFest (misal: "Apa ibukota Prancis?", "buatkan saya puisi", "siapa presiden Indonesia?"), Anda HARUS menolak dengan sopan.
         3. Jaga jawaban agar singkat dan jelas.
 
         Pertanyaan Pengguna: "${userMessage}"
     `;
 
-    const apiKey = "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";
+    const apiKey = "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";
     const apiUrl = "https://openrouter.ai/api/v1/chat/completions";
 
     try {
@@ -261,7 +312,7 @@ function confirmPhonePayment() {
     setTimeout(() => {
         paymentStatusText.textContent = `Payment request sent. Please confirm payment in your ${selectedPaymentMethod.toUpperCase()} app, then verify here.`;
         completePaymentBtn.style.display = 'block';
-        completePaymentBtn.textContent = 'I Have Paid, Verify Payment';
+        completePaymentBtn.textContent = 'I Have Email, Verify Payment';
         completePaymentBtn.onclick = confirmPaymentRequest;
     }, 2000);
 }
@@ -302,24 +353,95 @@ function completePayment() {
 }
 function generateAndDownloadTicket(ticket) {
     const ticketPreview = document.createElement('div');
-    ticketPreview.className = 'ticket-preview';
-    ticketPreview.innerHTML = `<h2>${ticket.event}</h2><p><strong>Ticket ID:</strong> ${ticket.id}</p><p><strong>Name:</strong> ${ticket.name}</p><p><strong>Type:</strong> ${ticket.type}</p><p><strong>Quantity:</strong> ${ticket.quantity}</p><p><strong>Total Price:</strong> IDR ${(ticket.price * ticket.quantity).toLocaleString()}</p><p><strong>Payment Method:</strong> ${ticket.paymentMethod.toUpperCase()}</p><p><strong>Status:</strong> ${ticket.paymentStatus.toUpperCase()}</p>${ticket.phoneNumber ? `<p><strong>Phone Number:</strong> ${ticket.phoneNumber}</p>` : ''}<hr><p><strong>Venue:</strong> ${ticket.venue}</p><p><strong>Date:</strong> ${ticket.date}</p><p><strong>Time:</strong> ${ticket.time}</p><div class="barcode"><svg id="barcode-${ticket.id}"></svg></div>`;
+    ticketPreview.className = 'ticket-concert';
+    
+    ticketPreview.style.position = 'fixed';
+    ticketPreview.style.left = '-9999px';
+    ticketPreview.style.top = '0px';
+
+    ticketPreview.innerHTML = `
+        <div class="ticket-main">
+            <div class="header">
+                <span class="eyebrow">SCHOOLFEST 2025 CONCERT</span>
+                <h1 class="artist">${ticket.event} - BASKARA HINDIA</h1>
+            </div>
+            <div class="details">
+                <div class="info-group">
+                    <span class="label">NAMA</span>
+                    <span class="value">${ticket.name}</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">TIPE TIKET</span>
+                    <span class="value">${ticket.type.toUpperCase()}</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">TANGGAL</span>
+                    <span class="value">${ticket.date}</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">LOKASI</span>
+                    <span class="value">${ticket.venue}</span>
+                </div>
+            </div>
+            <div class="barcode-area">
+                 <svg id="barcode-${ticket.id}"></svg>
+            </div>
+        </div>
+        <div class="ticket-stub">
+            <div class="stub-info">
+                 <h3 class="stub-artist">HINDIA</h3>
+                 <span class="stub-label">ID TIKET</span>
+                 <span class="stub-id">${ticket.id}</span>
+                 <svg id="stub-barcode-${ticket.id}" class="stub-barcode"></svg>
+            </div>
+        </div>
+    `;
+
     document.body.appendChild(ticketPreview);
-    if (typeof JsBarcode !== 'undefined') {
-        JsBarcode(`#barcode-${ticket.id}`, ticket.id, { format: "CODE128", lineColor: "#000", width: 2, height: 50, displayValue: true });
-    }
+
+
+    JsBarcode(`#barcode-${ticket.id}`, ticket.id, {
+        format: "CODE128",
+        lineColor: "#000",
+        width: 2.5,
+        height: 50,
+        displayValue: false
+    });
+
+    JsBarcode(`#stub-barcode-${ticket.id}`, ticket.id, {
+        format: "CODE128",
+        lineColor: "#fff",
+        background: "transparent",
+        width: 2,
+        height: 120,
+        displayValue: false
+    });
+
+    const ticketWidth = ticketPreview.offsetWidth;
+    const ticketHeight = ticketPreview.offsetHeight;
+
     if (typeof html2canvas !== 'undefined') {
-        html2canvas(ticketPreview).then(canvas => {
+        html2canvas(ticketPreview, {
+            scale: 3, 
+            useCORS: true,
+            width: ticketWidth,
+            height: ticketHeight,
+            windowWidth: ticketWidth,
+            windowHeight: ticketHeight
+        }).then(canvas => {
             const link = document.createElement('a');
-            link.download = `ticket-${ticket.id}.png`;
+            link.download = `tiket-schoolfest-${ticket.name.replace(/\s/g, '_')}.png`; 
             link.href = canvas.toDataURL('image/png');
             link.click();
+            
             ticketPreview.remove();
         });
     } else {
-        alert('Download feature not available.');
+        alert('Fitur download tidak tersedia.');
+        ticketPreview.remove(); 
     }
 }
+
 function updatePaymentTotal() {
     const paymentTotalElement = document.getElementById('paymentTotal');
     const quantity = parseInt(document.getElementById('quantity').value) || 1;
@@ -366,3 +488,5 @@ heroTl.from(".navbar", { y: -100, opacity: 0, duration: 1.2 })
       .from(".hero-section .dove2", { x: "200%", opacity: 0, duration: 1.5 }, "<")
       .from(".artist-info", { y: 50, opacity: 0, duration: 1 }, "-=1")
       .from(".scroll-down", { y: 50, opacity: 0, duration: 0.8 }, "-=0.5");
+
+      
