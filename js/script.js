@@ -57,6 +57,25 @@ function initializeUI() {
     initializeChatbot();
 }
 
+document.querySelectorAll("#faq details").forEach((faq) => {
+    faq.addEventListener("toggle", function () {
+        if (this.open) {
+            document.querySelectorAll("#faq details").forEach((otherFaq) => {
+                if (otherFaq !== this) {
+                    otherFaq.removeAttribute("open");
+                }
+            });
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded",function(){
+    const firstFaq = document.querySelector("#faq details")
+    if (firstFaq){
+        firstFaq.setAttribute("open","")
+    }
+})
+
  (function(){
         emailjs.init("ImEIAz3SHbAg1nLZj"); // ⚠️ Replace with your actual Public Key
     })();
@@ -203,7 +222,7 @@ async function getOpenRouterResponse(userMessage) {
         Pertanyaan Pengguna: "${userMessage}"
     `;
 
-    const apiKey = "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";
+    const apiKey = "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";
     const apiUrl = "https://openrouter.ai/api/v1/chat/completions";
 
     try {
