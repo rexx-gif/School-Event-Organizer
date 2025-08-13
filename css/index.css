@@ -15,6 +15,9 @@
     color: var(--text-primary); 
 }
 
+
+
+
 * {
     margin: 0;
     padding: 0;
@@ -55,8 +58,32 @@ body {
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
     position: relative; 
+      --sb-track-color: #333333;
+  --sb-thumb-color: #151515;
+  --sb-size: 10px;
 }
 
+body::-webkit-scrollbar {
+  width: var(--sb-size)
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 1px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 9px;
+  
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}
 
 body::before {
     content: '';
@@ -1531,6 +1558,108 @@ h1.back-text {
     color: #f5f5f5;
 }
 
+.faq-section {
+    padding: 6rem 0;
+    background: radial-gradient(circle at top, var(--dark-gray) 0%, var(--pure-black) 70%);
+    position: relative;
+    color: var(--white);
+}
+
+.faq-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+.question-container {
+    padding: 2rem;
+    border-radius: 1rem;
+    background: var(--glass-white);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    margin: 0 auto;
+    max-width: 2000px;
+    box-sizing: border-box;
+}
+
+.list-question {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#faq details {
+    background: transparent;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+#faq summary {
+    list-style: none;
+    position: relative;
+    padding: 1.2em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--white);
+    transition: color 0.3s ease;
+}
+
+#faq summary:hover {
+    color: var(--primary-color);
+}
+
+/* Hilangkan default arrow */
+#faq summary::-webkit-details-marker,
+#faq summary::marker {
+    display: none;
+}
+
+/* Custom arrow */
+.arrow {
+    transition: transform 0.3s ease;
+    display: inline-block;
+    color: var(--primary-color);
+}
+
+/* Rotasi saat detail dibuka */
+#faq details[open] .arrow {
+    transform: rotate(180deg);
+}
+
+/* Jawaban FAQ */
+#faq details p {
+    padding: 0 1.5em 1.2em;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animasi muncul jawaban */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .faq-section h2 {
+        font-size: 2rem;
+    }
+    #faq summary {
+        font-size: 1rem;
+    }
+    #faq details p {
+        font-size: 0.9rem;
+    }
+}
+
+
 h3.vip{
 background: linear-gradient(
         to right,
@@ -1709,10 +1838,15 @@ background: linear-gradient(
     margin-top: 2rem;
 }
 
+.social-media i {
+    color: white;
+}
+
 .social-media a {
     display: flex;
     align-items: center;
     justify-content: center;
+    left: 10px;
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
@@ -2448,6 +2582,7 @@ audio {
     .about-section,
     .schedule-section,
     .tickets-section,
+    .faq-section,
     .contact-section {
         padding: 4rem 0;
     }
